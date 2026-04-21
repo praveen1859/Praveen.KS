@@ -1,1128 +1,833 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Praveen K S - Portfolio</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-primary: #0f172a;
-            --bg-secondary: #1e293b;
-            --bg-tertiary: #334155;
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
-            --accent-primary: #3b82f6;
-            --accent-secondary: #8b5cf6;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --shadow: rgba(0, 0, 0, 0.3);
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        [data-theme="light"] {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8fafc;
-            --bg-tertiary: #e2e8f0;
-            --text-primary: #0f172a;
-            --text-secondary: #334155;
-            --text-muted: #64748b;
-            --border-color: rgba(0, 0, 0, 0.1);
-            --shadow: rgba(0, 0, 0, 0.1);
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(20px);
-            padding: 1.2rem 5%;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        [data-theme="light"] nav {
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        nav .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            transition: all 0.3s ease;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-1);
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Theme Toggle in Nav */
-        .theme-toggle {
-            display: flex;
-            gap: 0.5rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 50px;
-            padding: 0.4rem;
-            transition: all 0.3s ease;
-        }
-
-        .theme-btn {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            font-size: 1.1rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .theme-btn.active {
-            background: var(--gradient-1);
-            transform: scale(1.1);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 8rem 5% 4rem;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .hero-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            width: 100%;
-            text-align: center;
-        }
-
-        .hero-text {
-            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-label {
-            font-size: 1rem;
-            color: var(--accent-primary);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-        }
-
-        .hero-text h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .hero-text h2 {
-            font-size: 2.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .hero-text p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-            line-height: 1.8;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            transition: color 0.3s ease;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1.1rem 2.8rem;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 12px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            border: none;
-            font-family: 'Inter', sans-serif;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: var(--gradient-1);
-            color: white;
-            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 32px rgba(59, 130, 246, 0.5);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 2px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            background: var(--bg-secondary);
-            transform: translateY(-3px);
-        }
-
-        /* Section Styles */
-        section {
-            padding: 6rem 5%;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .section-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-label {
-            font-size: 0.95rem;
-            color: var(--accent-primary);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-        }
-
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            transition: color 0.3s ease;
-        }
-
-        /* About Section */
-        .about-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .about-card {
-            background: var(--bg-secondary);
-            border-radius: 20px;
-            padding: 3rem;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 40px var(--shadow);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .about-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px var(--shadow);
-        }
-
-        .about-text {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            line-height: 1.9;
-            transition: color 0.3s ease;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        /* Education Timeline */
-        .education-timeline {
-            position: relative;
-            padding-left: 3rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .education-timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 3px;
-            height: 100%;
-            background: var(--gradient-1);
-            transition: all 0.3s ease;
-        }
-
-        .education-item {
-            position: relative;
-            margin-bottom: 3rem;
-            background: var(--bg-secondary);
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 1px solid var(--border-color);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .education-item::before {
-            content: '';
-            position: absolute;
-            left: -3.65rem;
-            top: 2.5rem;
-            width: 1.3rem;
-            height: 1.3rem;
-            background: var(--gradient-1);
-            border-radius: 50%;
-            border: 3px solid var(--bg-primary);
-            transition: all 0.3s ease;
-        }
-
-        .education-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 15px 50px var(--shadow);
-        }
-
-        .education-item h3 {
-            color: var(--text-primary);
-            font-size: 1.6rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-            transition: color 0.3s ease;
-        }
-
-        .education-item .institution {
-            color: var(--accent-primary);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .education-item .year {
-            color: var(--text-muted);
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-card {
-            background: var(--bg-secondary);
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 1px solid var(--border-color);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-1);
-            transform: scaleX(0);
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .skill-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .skill-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px var(--shadow);
-        }
-
-        .skill-card h3 {
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            transition: color 0.3s ease;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
-
-        .skill-tag {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-            color: var(--text-primary);
-            padding: 0.7rem 1.3rem;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid var(--border-color);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .skill-tag:hover {
-            background: var(--gradient-1);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            gap: 2.5rem;
-        }
-
-        .project-card {
-            background: var(--bg-secondary);
-            border-radius: 20px;
-            padding: 3rem;
-            border: 1px solid var(--border-color);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 0;
-            background: var(--gradient-1);
-            transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 20px 0 0 20px;
-        }
-
-        .project-card:hover::before {
-            height: 100%;
-        }
-
-        .project-card:hover {
-            transform: translateX(10px);
-            box-shadow: 0 20px 60px var(--shadow);
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 1.5rem;
-            gap: 2rem;
-        }
-
-        .project-card h3 {
-            color: var(--text-primary);
-            font-size: 1.7rem;
-            font-weight: 700;
-            flex: 1;
-            transition: color 0.3s ease;
-        }
-
-        .project-date {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-            color: var(--accent-primary);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-        }
-
-        .project-card p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            font-size: 1.05rem;
-            transition: color 0.3s ease;
-        }
-
-        /* Timeline (Experience & Activities) */
-        .timeline {
-            position: relative;
-            padding-left: 3rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 3px;
-            height: 100%;
-            background: var(--gradient-1);
-            transition: all 0.3s ease;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            background: var(--bg-secondary);
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 1px solid var(--border-color);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -3.65rem;
-            top: 2.5rem;
-            width: 1.3rem;
-            height: 1.3rem;
-            background: var(--gradient-1);
-            border-radius: 50%;
-            border: 3px solid var(--bg-primary);
-            transition: all 0.3s ease;
-        }
-
-        .timeline-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 15px 50px var(--shadow);
-        }
-
-        .timeline-item h3 {
-            color: var(--text-primary);
-            font-size: 1.6rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-            transition: color 0.3s ease;
-        }
-
-        .timeline-item .company {
-            color: var(--accent-primary);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .timeline-item .duration {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .timeline-item p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            font-size: 1.05rem;
-            transition: color 0.3s ease;
-        }
-
-        /* Awards */
-        .awards-grid {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .award-card {
-            background: var(--bg-secondary);
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 1px solid var(--border-color);
-            border-left: 5px solid;
-            border-image: var(--gradient-2) 1;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .award-card:hover {
-            transform: translateX(10px);
-            box-shadow: 0 15px 50px var(--shadow);
-        }
-
-        .award-card h3 {
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            margin-bottom: 0.8rem;
-            font-weight: 700;
-            transition: color 0.3s ease;
-        }
-
-        .award-card p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            font-size: 1.05rem;
-            transition: color 0.3s ease;
-        }
-
-        /* Contact Section */
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-text {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            line-height: 1.8;
-            transition: color 0.3s ease;
-        }
-
-        .contact-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 1.2rem 2.5rem;
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            color: var(--text-primary);
-            text-decoration: none;
-            font-size: 1.05rem;
-            font-weight: 600;
-            border: 1px solid var(--border-color);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .contact-btn i {
-            font-size: 1.3rem;
-            transition: transform 0.3s ease;
-        }
-
-        .contact-btn:hover {
-            background: var(--gradient-1);
-            color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.3);
-        }
-
-        .contact-btn:hover i {
-            transform: scale(1.1);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--bg-secondary);
-            padding: 2.5rem 5%;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        footer p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-        }
-
-        footer span {
-            color: var(--accent-primary);
-            font-weight: 600;
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .nav-links {
-                display: none;
-            }
-
-            .nav-right {
-                gap: 0;
-            }
-
-            .hero-text h1 {
-                font-size: 3.5rem;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-text h2 {
-                font-size: 1.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .timeline,
-            .education-timeline {
-                padding-left: 2rem;
-            }
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Smooth transitions for all interactive elements */
-        a,
-        button,
-        .skill-tag,
-        .project-card,
-        .timeline-item,
-        .education-item,
-        .about-card,
-        .skill-card,
-        .award-card,
-        .contact-btn {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praveen K S — Communication Systems Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --bg: #080c14;
+  --bg2: #0d1420;
+  --bg3: #121b2e;
+  --bg4: #1a2540;
+  --surface: rgba(255,255,255,0.04);
+  --surface-hover: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.08);
+  --border-bright: rgba(255,255,255,0.15);
+  --text1: #f0f4ff;
+  --text2: #a8b8d8;
+  --text3: #6b7fa0;
+  --accent: #4f8ef7;
+  --accent2: #7c6af5;
+  --accent3: #22d3ee;
+  --gold: #f59e0b;
+  --green: #10b981;
+  --grad1: linear-gradient(135deg, #4f8ef7, #7c6af5);
+  --grad2: linear-gradient(135deg, #22d3ee, #4f8ef7);
+  --grad3: linear-gradient(135deg, #f59e0b, #ef4444);
+  --glow: 0 0 60px rgba(79,142,247,0.15);
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+  --r: 16px;
+  --r-lg: 24px;
+  --transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+[data-theme="light"] {
+  --bg: #f5f7ff;
+  --bg2: #eef1fb;
+  --bg3: #e4e9f7;
+  --bg4: #d8dfef;
+  --surface: rgba(255,255,255,0.9);
+  --surface-hover: rgba(255,255,255,1);
+  --border: rgba(79,142,247,0.12);
+  --border-bright: rgba(79,142,247,0.25);
+  --text1: #0a0e1a;
+  --text2: #2d3a5a;
+  --text3: #6b7fa0;
+  --glow: 0 0 60px rgba(79,142,247,0.1);
+  --shadow-card: 0 4px 24px rgba(79,142,247,0.1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+body {
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text1);
+  line-height:1.6;
+  transition:background 0.5s ease, color 0.5s ease;
+  overflow-x:hidden;
+}
+
+/* ── NOISE TEXTURE ── */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ── NAV ── */
+nav {
+  position:fixed;top:0;width:100%;z-index:1000;
+  padding:0 5%;
+  background:rgba(8,12,20,0.7);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  transition:var(--transition);
+}
+[data-theme="light"] nav {
+  background:rgba(245,247,255,0.85);
+}
+.nav-inner {
+  max-width:1200px;margin:0 auto;
+  height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.logo {
+  font-family:'Syne',sans-serif;
+  font-size:1.5rem;font-weight:800;
+  background:var(--grad1);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  letter-spacing:-0.5px;
+}
+.nav-links {
+  display:flex;gap:2rem;list-style:none;
+}
+.nav-links a {
+  color:var(--text2);text-decoration:none;font-size:0.9rem;font-weight:500;
+  position:relative;padding-bottom:4px;
+  transition:color 0.3s;
+}
+.nav-links a::after {
+  content:'';position:absolute;bottom:0;left:0;width:0;height:2px;
+  background:var(--grad1);border-radius:2px;
+  transition:width 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.nav-links a:hover{color:var(--text1);}
+.nav-links a:hover::after{width:100%;}
+
+/* Theme Toggle */
+.theme-row{display:flex;align-items:center;gap:0.75rem;}
+.theme-pill {
+  display:flex;align-items:center;gap:3px;
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:50px;padding:4px;
+}
+.tbtn {
+  width:34px;height:34px;border-radius:50%;border:none;
+  background:transparent;cursor:pointer;font-size:0.95rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:var(--transition);color:var(--text2);
+}
+.tbtn.active{background:var(--grad1);color:#fff;transform:scale(1.05);}
+
+/* Hamburger */
+.hamburger {
+  display:none;flex-direction:column;gap:5px;cursor:pointer;
+  background:none;border:none;padding:4px;
+}
+.hamburger span {
+  width:22px;height:2px;background:var(--text2);border-radius:2px;
+  transition:var(--transition);display:block;
+}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* Mobile menu */
+.mobile-menu {
+  display:none;
+  position:fixed;top:68px;left:0;width:100%;z-index:999;
+  background:var(--bg2);border-bottom:1px solid var(--border);
+  padding:1.5rem 5%;
+  flex-direction:column;gap:1rem;
+  transform:translateY(-110%);
+  transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.mobile-menu.show{display:flex;transform:translateY(0);}
+.mobile-menu a{color:var(--text2);text-decoration:none;font-size:1rem;font-weight:500;padding:0.5rem 0;border-bottom:1px solid var(--border);}
+.mobile-menu a:last-child{border-bottom:none;}
+
+/* ── SECTIONS ── */
+section{padding:7rem 5%;position:relative;z-index:1;}
+.wrap{max-width:1100px;margin:0 auto;}
+.sec-label {
+  font-size:0.8rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;
+  color:var(--accent);margin-bottom:0.6rem;
+}
+.sec-title {
+  font-family:'Syne',sans-serif;font-size:2.8rem;font-weight:800;
+  color:var(--text1);letter-spacing:-1px;line-height:1.1;
+  margin-bottom:3.5rem;
+}
+.sec-head{text-align:center;}
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:8rem 5% 5rem;
+  background:radial-gradient(ellipse 80% 60% at 50% -10%, rgba(79,142,247,0.12) 0%, transparent 70%);
+}
+.hero-inner {
+  max-width:900px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;
+  animation:heroIn 0.9s cubic-bezier(0.4,0,0.2,1) both;
+}
+@keyframes heroIn{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:none;}}
+
+/* Profile Photo */
+.profile-ring {
+  width:150px;height:150px;
+  border-radius:50%;
+  padding:3px;
+  background:var(--grad1);
+  margin-bottom:2.5rem;
+  position:relative;
+  flex-shrink:0;
+}
+.profile-ring::after {
+  content:'';position:absolute;inset:-6px;
+  border-radius:50%;
+  background:var(--grad1);
+  opacity:0.25;
+  animation:pulse 2.5s ease infinite;
+}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:0.25;}50%{transform:scale(1.08);opacity:0.1;}}
+.profile-img {
+  width:100%;height:100%;
+  border-radius:50%;
+  object-fit:cover;
+  background:var(--bg3);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.profile-placeholder {
+  width:100%;height:100%;
+  border-radius:50%;
+  background:var(--bg3);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;
+  background:var(--grad1);
+  color:#fff;
+}
+
+.hero-badge {
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:rgba(79,142,247,0.12);border:1px solid rgba(79,142,247,0.25);
+  color:var(--accent);
+  padding:0.45rem 1.2rem;border-radius:50px;font-size:0.85rem;font-weight:600;
+  margin-bottom:1.5rem;letter-spacing:0.5px;
+}
+.hero-badge span{width:6px;height:6px;background:var(--accent3);border-radius:50%;display:block;animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+
+.hero h1 {
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2.8rem,6vw,5rem);
+  font-weight:800;letter-spacing:-2px;line-height:1.05;
+  margin-bottom:1rem;
+  background:linear-gradient(135deg,var(--text1) 30%,var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero h2 {
+  font-size:1.25rem;color:var(--text2);font-weight:400;margin-bottom:1.5rem;
+  font-style:italic;
+}
+.hero p {
+  font-size:1.05rem;color:var(--text3);max-width:620px;
+  line-height:1.85;margin-bottom:2.5rem;
+}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+
+/* Buttons */
+.btn {
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.9rem 2rem;border-radius:12px;
+  font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:600;
+  text-decoration:none;cursor:pointer;border:none;
+  transition:var(--transition);
+}
+.btn-primary{background:var(--grad1);color:#fff;box-shadow:0 8px 24px rgba(79,142,247,0.3);}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(79,142,247,0.45);}
+.btn-outline{background:transparent;color:var(--text1);border:1.5px solid var(--border-bright);}
+.btn-outline:hover{background:var(--surface-hover);transform:translateY(-3px);border-color:var(--accent);}
+
+/* Scroll indicator */
+.scroll-hint {
+  margin-top:3rem;display:flex;flex-direction:column;align-items:center;gap:0.5rem;
+  color:var(--text3);font-size:0.8rem;letter-spacing:1px;animation:float 2s ease infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+.scroll-hint i{font-size:1.1rem;}
+
+/* ── ABOUT ── */
+#about{background:var(--bg2);}
+.about-card {
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:2.5rem 3rem;
+  box-shadow:var(--shadow-card);
+  transition:var(--transition);
+}
+.about-card:hover{box-shadow:var(--glow),var(--shadow-card);}
+.about-card p{color:var(--text2);font-size:1.05rem;line-height:1.9;margin-bottom:1.2rem;}
+.about-card p:last-child{margin-bottom:0;}
+
+/* ── EDUCATION ── */
+.edu-list{position:relative;padding-left:2.5rem;max-width:800px;margin:0 auto;}
+.edu-list::before{
+  content:'';position:absolute;left:7px;top:0;width:2px;height:100%;
+  background:var(--grad1);border-radius:2px;
+}
+.edu-item{
+  position:relative;margin-bottom:2rem;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:2rem 2.5rem;
+  transition:var(--transition);
+}
+.edu-item::before{
+  content:'';position:absolute;left:-2.5rem;top:2rem;
+  width:16px;height:16px;border-radius:50%;
+  background:var(--grad1);border:3px solid var(--bg);
+}
+.edu-item:hover{transform:translateX(8px);box-shadow:var(--shadow-card);}
+.edu-item h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text1);margin-bottom:0.3rem;}
+.edu-item .inst{color:var(--accent);font-size:0.95rem;font-weight:600;margin-bottom:0.2rem;}
+.edu-item .yr{color:var(--text3);font-size:0.85rem;}
+
+/* ── SKILLS ── */
+#skills{background:var(--bg2);}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;}
+.sk-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:2rem;
+  transition:var(--transition);position:relative;overflow:hidden;
+}
+.sk-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--grad1);transform:scaleX(0);transform-origin:left;
+  transition:transform 0.4s ease;
+}
+.sk-card:hover::before{transform:scaleX(1);}
+.sk-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-card);}
+.sk-card h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--text1);margin-bottom:1.2rem;}
+.sk-icon{font-size:1.8rem;margin-bottom:0.8rem;}
+.tags{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.tag{
+  background:rgba(79,142,247,0.08);
+  color:var(--text2);
+  padding:0.4rem 0.85rem;border-radius:8px;
+  font-size:0.82rem;font-weight:500;
+  border:1px solid var(--border);
+  transition:var(--transition);
+}
+.tag:hover{background:var(--grad1);color:#fff;border-color:transparent;transform:translateY(-2px);}
+
+/* ── PROJECTS ── */
+.proj-grid{display:grid;gap:2rem;}
+.proj-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:2.5rem;
+  transition:var(--transition);position:relative;overflow:hidden;
+}
+.proj-card::after{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:var(--grad1);transform:scaleY(0);transform-origin:top;
+  transition:transform 0.45s ease;border-radius:4px 0 0 4px;
+}
+.proj-card:hover::after{transform:scaleY(1);}
+.proj-card:hover{transform:translateX(8px);box-shadow:var(--shadow-card);}
+.proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1.5rem;margin-bottom:1rem;}
+.proj-card h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text1);flex:1;}
+.proj-date{
+  font-size:0.8rem;font-weight:600;color:var(--accent);
+  background:rgba(79,142,247,0.1);padding:0.35rem 0.8rem;border-radius:6px;
+  white-space:nowrap;border:1px solid rgba(79,142,247,0.2);
+}
+.proj-card p{color:var(--text2);font-size:0.98rem;line-height:1.8;}
+.doi-link{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  color:var(--accent3);font-size:0.85rem;font-weight:600;
+  text-decoration:none;margin-top:1rem;
+  transition:var(--transition);
+}
+.doi-link:hover{gap:0.7rem;color:var(--accent);}
+
+/* ── AWARDS ── */
+.awards-grid{display:grid;gap:1.5rem;max-width:800px;margin:0 auto;}
+.award-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:2rem 2.5rem;
+  display:flex;gap:1.5rem;align-items:flex-start;
+  transition:var(--transition);
+}
+.award-card:hover{transform:translateX(8px);box-shadow:var(--shadow-card);}
+.award-icon{font-size:2rem;flex-shrink:0;margin-top:2px;}
+.award-card h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text1);margin-bottom:0.4rem;}
+.award-card p{color:var(--text2);font-size:0.92rem;line-height:1.7;}
+
+/* ── TIMELINE (experience / activities) ── */
+.tl{position:relative;padding-left:2.5rem;}
+.tl::before{content:'';position:absolute;left:7px;top:0;width:2px;height:100%;background:var(--grad1);}
+.tl-item{
+  position:relative;margin-bottom:2rem;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:2rem 2.5rem;
+  transition:var(--transition);
+}
+.tl-item::before{
+  content:'';position:absolute;left:-2.5rem;top:2rem;
+  width:16px;height:16px;border-radius:50%;
+  background:var(--grad2);border:3px solid var(--bg);
+}
+.tl-item:hover{transform:translateX(8px);box-shadow:var(--shadow-card);}
+.tl-item h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text1);margin-bottom:0.3rem;}
+.tl-item .co{color:var(--accent);font-size:0.9rem;font-weight:600;margin-bottom:0.2rem;}
+.tl-item .dur{color:var(--text3);font-size:0.82rem;margin-bottom:0.8rem;}
+.tl-item p{color:var(--text2);font-size:0.95rem;line-height:1.8;}
+
+/* ── CONTACT ── */
+#contact{background:var(--bg2);}
+.contact-wrap{max-width:580px;margin:0 auto;text-align:center;}
+.contact-wrap p{color:var(--text2);font-size:1.05rem;line-height:1.85;margin-bottom:2.5rem;}
+.contact-btns{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;}
+.c-btn{
+  display:inline-flex;align-items:center;gap:0.65rem;
+  padding:1rem 1.8rem;border-radius:12px;text-decoration:none;
+  background:var(--surface);color:var(--text1);
+  border:1px solid var(--border-bright);font-weight:600;font-size:0.95rem;
+  transition:var(--transition);
+}
+.c-btn i{font-size:1.1rem;transition:var(--transition);}
+.c-btn:hover{background:var(--grad1);color:#fff;border-color:transparent;transform:translateY(-4px);box-shadow:0 10px 32px rgba(79,142,247,0.35);}
+.c-btn:hover i{transform:scale(1.1);}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:2.5rem 5%;text-align:center;
+}
+footer p{color:var(--text3);font-size:0.88rem;}
+footer strong{color:var(--accent);font-weight:600;}
+
+/* ── SUB HEADERS ── */
+.sub-sec{margin-top:5rem;}
+.sub-sec .sec-title{font-size:2rem;}
+
+/* ── DIVIDER ── */
+.divider{width:60px;height:4px;border-radius:2px;background:var(--grad1);margin:0 auto 3.5rem;}
+
+/* ── FADE IN ANIMATION ── */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.fade-in.visible{opacity:1;transform:none;}
+
+/* ── RESPONSIVE ── */
+@media (max-width:768px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  section{padding:5rem 5%;}
+  .sec-title{font-size:2rem;}
+  .hero{padding:7rem 5% 4rem;}
+  .hero h1{font-size:2.6rem;}
+  .about-card{padding:1.8rem;}
+  .proj-top{flex-direction:column;gap:0.5rem;}
+  .tl, .edu-list{padding-left:2rem;}
+  .tl-item::before, .edu-item::before{left:-2rem;}
+  .award-card{flex-direction:column;gap:0.5rem;}
+  .profile-ring{width:120px;height:120px;}
+}
+@media (max-width:480px){
+  .hero h1{font-size:2rem;}
+  .hero h2{font-size:1rem;}
+  .hero-btns{flex-direction:column;align-items:center;}
+  .sec-title{font-size:1.75rem;}
+  .about-card{padding:1.5rem;}
+  .tl-item{padding:1.5rem;}
+  .edu-item{padding:1.5rem 1.5rem 1.5rem 1.5rem;}
+}
+
+/* Print */
+@media print{nav,footer{display:none;}section{padding:3rem 5%;}}
+</style>
 </head>
-
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="logo">KS</div>
-            <div class="nav-right">
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <div class="theme-toggle">
-                    <button class="theme-btn active" onclick="setTheme('dark')" title="Dark Mode">🌙</button>
-                    <button class="theme-btn" onclick="setTheme('light')" title="Light Mode">☀️</button>
-                </div>
-            </div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="logo">PKS</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="theme-row">
+      <div class="theme-pill">
+        <button class="tbtn active" id="darkBtn" onclick="setTheme('dark')" title="Dark">🌙</button>
+        <button class="tbtn" id="lightBtn" onclick="setTheme('light')" title="Light">☀️</button>
+      </div>
+      <button class="hamburger" id="ham" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" onclick="closeMenu()">Home</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#education" onclick="closeMenu()">Education</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#projects" onclick="closeMenu()">Projects</a>
+  <a href="#experience" onclick="closeMenu()">Experience</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <!-- PROFILE PHOTO: Replace the div below with <img> tag when you have a photo -->
+    <!-- To add your photo: <img src="your-photo.jpg" class="profile-img" alt="Praveen K S"> -->
+
+
+    <!--
+    <div class="hero-badge"><span></span> Open to Research Opportunities</div>-->
+    <h1>PRAVEEN K S</h1>
+    <h2>M.Tech. Communication Systems · NIT Tiruchirappalli</h2>
+    <p>Specializing in Wireless Networks, Optical Communication, and Advanced Signal Processing. IEEE Best Paper Awardee — passionate about next-generation communication technologies.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-primary"><i class="fas fa-envelope"></i> Get In Touch</a>
+      <a href="#projects" class="btn btn-outline"><i class="fas fa-flask"></i> View Research</a>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head fade-in">
+      <div class="sec-label">Get To Know</div>
+      <div class="sec-title">About Me</div>
+      <div class="divider"></div>
+    </div>
+    <div class="about-card fade-in">
+      <p>I am currently pursuing an M.Tech in Communication Systems at the National Institute of Technology, Tiruchirappalli, with a strong academic foundation in Electronics and Communication Engineering from NIT Puducherry.</p>
+      <p>My research interests focus on advanced wireless communication technologies, particularly <strong style="color:var(--accent)">Orthogonal Time Frequency Space (OTFS)</strong> modulation, <strong style="color:var(--accent)">Free Space Optical (FSO)</strong> communication systems, and next-generation Wi-Fi standards (IEEE 802.11be / Wi-Fi 7). I am passionate about exploring innovative approaches to improve reliability, spectral efficiency, and performance in modern communication networks.</p>
+      <p>I have hands-on experience with MATLAB and Python for simulation-based analysis and performance evaluation of communication systems. I enjoy bridging theoretical concepts with practical implementations while continuously learning new technologies.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head fade-in">
+      <div class="sec-label">Academic Background</div>
+      <div class="sec-title">Education</div>
+      <div class="divider"></div>
+    </div>
+    <div class="edu-list">
+      <div class="edu-item fade-in">
+        <h3>M.Tech. in Communication Systems</h3>
+        <div class="inst">National Institute of Technology, Tiruchirappalli</div>
+        <div class="yr">2024 – 2026</div>
+      </div>
+      <div class="edu-item fade-in">
+        <h3>B.Tech. in Electronics & Communication Engineering</h3>
+        <div class="inst">National Institute of Technology, Puducherry</div>
+        <div class="yr">2020 – 2024</div>
+      </div>
+      <div class="edu-item fade-in">
+        <h3>Higher Secondary (Class XII)</h3>
+        <div class="inst">Amalorpavam Higher Secondary School, Puducherry</div>
+        <div class="yr">2020</div>
+      </div>
+      <div class="edu-item fade-in">
+        <h3>Secondary (Class X)</h3>
+        <div class="inst">Amalorpavam Higher Secondary School, Puducherry</div>
+        <div class="yr">2018</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head fade-in">
+      <div class="sec-label">My Expertise</div>
+      <div class="sec-title">Technical Skills</div>
+      <div class="divider"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="sk-card fade-in">
+        <div class="sk-icon">💻</div>
+        <h3>Programming Languages</h3>
+        <div class="tags">
+          <span class="tag">C</span>
+          <span class="tag">C++</span>
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-container">
-            <div class="hero-text">
-                <div class="hero-label">Communication Systems Engineer</div>
-                <h1>PRAVEEN K S</h1>
-                <h2>M.Tech. Communication Systems</h2>
-                <p>Specializing in Wireless Networks, Optical Communication, and Advanced Signal Processing. Passionate
-                    about developing innovative solutions for next-generation communication technologies.</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">
-                        <i class="fas fa-envelope"></i> Get In Touch
-                    </a>
-                    <a href="#projects" class="btn btn-secondary">
-                        <i class="fas fa-code"></i> View Projects
-                    </a>
-                </div>
-            </div>
+      </div>
+      <div class="sk-card fade-in">
+        <div class="sk-icon">⚙️</div>
+        <h3>Engineering Software</h3>
+        <div class="tags">
+          <span class="tag">MATLAB</span>
+          <span class="tag">Vivado (Xilinx)</span>
+          <span class="tag">Arduino</span>
+          <span class="tag">NetSim</span>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-label">Get To Know</div>
-                <h2 class="section-title">About Me</h2>
-            </div>
-            <div class="about-content">
-                <div class="about-card">
-                    <div class="about-text">
-                        <p>I am currently pursuing an M.Tech in Communication Systems at the National Institute of
-                            Technology, Tiruchirappalli, with a strong academic foundation in Electronics and
-                            Communication Engineering from NIT Puducherry.</p>
-
-                        <p>My research interests focus on advanced wireless communication technologies, particularly
-                            Orthogonal Time Frequency Space (OTFS) modulation, Free Space Optical (FSO) communication
-                            systems, and next-generation Wi-Fi standards (IEEE 802.11be / Wi-Fi 7). I am passionate
-                            about exploring innovative approaches to improve reliability, spectral efficiency, and
-                            performance in modern communication networks.</p>
-
-                        <p>I have hands-on experience with MATLAB and Python for simulation-based analysis and
-                            performance evaluation of communication systems. I am also familiar with PC assembly and
-                            operating systems, and I enjoy solving technical problems by bridging theoretical concepts
-                            with practical implementations while continuously learning new technologies.</p>
-
-
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="sk-card fade-in">
+        <div class="sk-icon">📡</div>
+        <h3>Research Areas</h3>
+        <div class="tags">
+          <span class="tag">Wireless Networks</span>
+          <span class="tag">Optical Wireless Comm.</span>
+          <span class="tag">OTFS Modulation</span>
+          <span class="tag">FSO Systems</span>
+          <span class="tag">Wi-Fi 7 (802.11be)</span>
         </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-label">Academic Background</div>
-                <h2 class="section-title">Education</h2>
-            </div>
-            <div class="education-timeline">
-                <div class="education-item">
-                    <h3>M.Tech. in Communication Systems</h3>
-                    <div class="institution">National Institute of Technology, Tiruchirappalli</div>
-                    <div class="year">2024 - 2026</div>
-                </div>
-                <div class="education-item">
-                    <h3>B.Tech. in Electronics & Communication Engineering</h3>
-                    <div class="institution">National Institute of Technology, Puducherry</div>
-                    <div class="year">2020 - 2024</div>
-                </div>
-                <div class="education-item">
-                    <h3>Higher Secondary (Class XII)</h3>
-                    <div class="institution">Amalorpavam Higher Secondary School, Puducherry</div>
-                    <div class="year">2020</div>
-                </div>
-                <div class="education-item">
-                    <h3>Secondary (Class X)</h3>
-                    <div class="institution">Amalorpavam Higher Secondary School, Puducherry</div>
-                    <div class="year">2018</div>
-                </div>
-            </div>
+      </div>
+      <div class="sk-card fade-in">
+        <div class="sk-icon">🏅</div>
+        <h3>Certifications & Training</h3>
+        <div class="tags">
+          <span class="tag">IEEE Best Paper Award</span>
+          <span class="tag">CCNA Networking</span>
+          <span class="tag">Lenovo In-Plant Training</span>
+          <span class="tag">Python for Data Science</span>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-label">My Expertise</div>
-                <h2 class="section-title">Technical Skills</h2>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>Programming Languages</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">C</span>
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">Python</span>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <h3>Engineering Software</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">MATLAB</span>
-                        <span class="skill-tag">Vivado (Xilinx)</span>
-                        <span class="skill-tag">Arduino</span>
-                        <span class="skill-tag">NetSim</span>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <h3>Research Areas</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Wireless Networks</span>
-                        <span class="skill-tag">Optical Wireless Communication</span>
-
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <h3>Certifications</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Best Paper Award in IEEE Conference</span>
-                        <span class="skill-tag">Lenovo In-Plant Training</span>
-                        <span class="skill-tag">CCNA Networking</span>
-                    </div>
-                </div>
-            </div>
+<!-- PROJECTS & AWARDS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head fade-in">
+      <div class="sec-label">Featured Work</div>
+      <div class="sec-title">Research & Projects</div>
+      <div class="divider"></div>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card fade-in">
+        <div class="proj-top">
+          <h3>Performance Analysis of Hybrid Detection in Optical OTFS over FSO Channels</h3>
+          <span class="proj-date">Jul – Dec 2025</span>
         </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-label">Featured Work</div>
-                <h2 class="section-title">Projects</h2>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Performance Analysis of Hybrid Detection in Optical OTFS over FSO Channels</h3>
-                        <span class="project-date">Jul 2025 - Dec 2025</span>
-                    </div>
-                    <p>Studied the performance of DC-biased optical OTFS modulation over FSO channels using hybrid
-                        ZF–MMSE detection. Evaluated BER performance across multiple modulation schemes under varying
-                        SNR conditions. Simulation results confirmed enhanced error resilience and reliability compared
-                        to standalone ZF and MMSE detectors.</p>
-                </div>
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Performance Analysis of IEEE 802.11be (EHT) WLAN (Wi-Fi 7)</h3>
-                        <span class="project-date">Jul 2023 - Apr 2024</span>
-                    </div>
-                    <p>Designed and developed an analytical model to evaluate saturation throughput in IEEE 802.11be
-                        (Extremely High Throughput) WLAN systems. Optimized model parameters to achieve higher
-                        throughput and lower latency under varying network loads. Analysed the impact of advanced
-                        features such as multi-link operation and NOMA on network performance.</p>
-                </div>
-            </div>
-
-            <div class="section-header" style="margin-top: 5rem;">
-                <div class="section-label">Recognition</div>
-                <h2 class="section-title">Awards & Achievements</h2>
-            </div>
-            <div class="awards-grid">
-                <div class="award-card">
-                    <h3>🏆 Best Paper Award – IEEE IConSCEPT 2025</h3>
-                    <p>Received the Best Paper Award for the research titled "Performance Analysis of Optical OTFS over
-                        FSO Using Various Modulation Schemes" at the IEEE International Conference on Signal Processing,
-                        Communication, and Embedded Systems Technology.</p>
-                </div>
-                <div class="award-card">
-                    <h3>🥇 Gold Medal in Carrom (Men's Category)</h3>
-                    <p>Inter-Department Sports Day, NIT Puducherry (2023)</p>
-                </div>
-            </div>
+        <p>Studied the performance of DC-biased optical OTFS modulation over FSO channels using hybrid ZF–MMSE detection. Evaluated BER performance across multiple modulation schemes under varying SNR conditions. Simulation results confirmed enhanced error resilience and reliability compared to standalone ZF and MMSE detectors.</p>
+      </div>
+      <div class="proj-card fade-in">
+        <div class="proj-top">
+          <h3>Performance Analysis of IEEE 802.11be (EHT) WLAN (Wi-Fi 7)</h3>
+          <span class="proj-date">Jul 2023 – Apr 2024</span>
         </div>
-    </section>
+        <p>Designed and developed an analytical model to evaluate saturation throughput in IEEE 802.11be (Extremely High Throughput) WLAN systems. Optimized model parameters to achieve higher throughput and lower latency under varying network loads. Analysed the impact of advanced features such as multi-link operation and NOMA on network performance.</p>
+      </div>
+    </div>
 
-    <!-- Experience Section -->
-    <section id="experience">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-label">Career Journey</div>
-                <h2 class="section-title">Experience</h2>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h3>Summer Internship</h3>
-                    <div class="company">National Institute of Technology, Tiruchirappalli</div>
-                    <div class="duration">May 2025 – July 2025</div>
-                    <p>Analysed an OTFS-based LEO communication system with FSO relaying through HAPS, addressing
-                        atmospheric turbulence and pointing errors. Validated reliability gains through MATLAB
-                        simulations, demonstrating improved performance compared to RF-based systems.</p>
-                </div>
-                <div class="timeline-item">
-                    <h3>Internship Trainee</h3>
-                    <div class="company">Lenovo India Ltd</div>
-                    <div class="duration">Jan 2023</div>
-                    <p>Completed in-plant training in the Electronics and Communication domain. Gained hands-on exposure
-                        to manufacturing, testing, and quality control processes of electronic devices. Learned about
-                        PCB assembly, component soldering, system integration, and functional testing procedures.</p>
-                </div>
-            </div>
-
-            <div class="section-header" style="margin-top: 5rem;">
-                <div class="section-label">Beyond Academics</div>
-                <h2 class="section-title">Extracurricular Activities</h2>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h3>Volunteer, National Service Scheme (NSS)</h3>
-                    <div class="company">NIT Puducherry</div>
-                    <p>Participated in community service initiatives aimed at enhancing leadership qualities, team
-                        spirit, and social responsibility.</p>
-                </div>
-                <div class="timeline-item">
-                    <h3>Coordinator, Cultural & Sports Events</h3>
-                    <div class="company">NIT Puducherry</div>
-                    <p>Coordinated Tamil Club activities, Arts Club at Le Ciel Cultural Fest (2023), and Carrom events
-                        at Sports Day (2024). Organized cultural and literary activities to promote Tamil language and
-                        heritage.</p>
-                </div>
-            </div>
+    <!-- AWARDS -->
+    <div class="sub-sec fade-in">
+      <div class="sec-head">
+        <div class="sec-label">Recognition</div>
+        <div class="sec-title">Awards & Achievements</div>
+        <div class="divider"></div>
+      </div>
+    </div>
+    <div class="awards-grid">
+      <div class="award-card fade-in">
+        <div class="award-icon">🏆</div>
+        <div>
+          <h3>Best Paper Award — IEEE IConSCEPT 2025</h3>
+          <p>Received the Best Paper Award for "Performance Analysis of Optical OTFS over FSO Using Various Modulation Schemes" at the IEEE 2025 International Conference on Signal Processing, Computation, Electronics, Power and Telecommunication.</p>
+        <a href="https://doi.org/10.1109/IConSCEPT66142.2025.11437213" class="doi-link" target="_blank" rel="noopener">
+          <i class="fas fa-external-link-alt"></i> IEEE Publication — DOI: 10.1109/IConSCEPT66142.2025.11437213
+        </a>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-label">Let's Connect</div>
-                <h2 class="section-title">Get In Touch</h2>
-            </div>
-            <div class="contact-content">
-                <p class="contact-text">I'm always open to discussing research opportunities, collaboration projects, or
-                    innovative ideas in wireless communication and optical systems. Feel free to reach out!</p>
-                <div class="contact-buttons">
-                    <a href="mailto:praveenvettrivel182002@gmail.com" class="contact-btn">
-                        <i class="fas fa-envelope"></i>
-                        Send Email
-                    </a>
-                    <a href="https://www.linkedin.com/in/praveen-k-s-26655b224/" target="_blank" class="contact-btn">
-                        <i class="fab fa-linkedin"></i>
-                        LinkedIn
-                    </a>
-                    <a href="https://github.com/praveen1859" target="_blank" class="contact-btn">
-                        <i class="fab fa-github"></i>
-                        GitHub
-                    </a>
-                </div>
-            </div>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-icon">🥇</div>
+        <div>
+          <h3>Gold Medal — Carrom (Men's Category)</h3>
+          <p>Inter-Department Sports Day, NIT Puducherry (2023)</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 <span>Praveen K S</span> | M.Tech. Communication Systems</p>
-        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Puducherry, India</p>
-    </footer>
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head fade-in">
+      <div class="sec-label">Career Journey</div>
+      <div class="sec-title">Experience</div>
+      <div class="divider"></div>
+    </div>
+    <div class="tl">
+      <div class="tl-item fade-in">
+        <h3>Summer Internship</h3>
+        <div class="co">National Institute of Technology, Tiruchirappalli</div>
+        <div class="dur">May 2025 – July 2025</div>
+        <p>Analysed an OTFS-based LEO communication system with FSO relaying through HAPS, addressing atmospheric turbulence and pointing errors. Validated reliability gains through MATLAB simulations, demonstrating improved performance compared to RF-based systems.</p>
+      </div>
+      <div class="tl-item fade-in">
+        <h3>Internship Trainee</h3>
+        <div class="co">Lenovo India Ltd</div>
+        <div class="dur">January 2023</div>
+        <p>Completed in-plant training in the Electronics and Communication domain. Gained hands-on exposure to manufacturing, testing, and quality control processes of electronic devices. Learned about PCB assembly, component soldering, system integration, and functional testing procedures.</p>
+      </div>
+      <div class="tl-item fade-in">
+  <h3>Data Science Intern</h3>
+  <div class="co">Verzeo (in collaboration with Immensphere)</div>
+  <div class="dur">February 2022 – April 2022</div>
+  <p>
+    Completed a Data Science internship using Python, working on real-time data analysis projects.Gained hands-on experience in data preprocessing, visualization, and basic machine learning techniques.Developed strong analytical and problem-solving skills through practical implementation.
+  </p>
+  </div>
+    </div>
 
-    <script>
-        // Theme Toggle with Smooth Transitions
-        function setTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
+    <!-- ACTIVITIES -->
+    <div class="sub-sec fade-in">
+      <div class="sec-head">
+        <div class="sec-label">Beyond Academics</div>
+        <div class="sec-title">Extracurricular Activities</div>
+        <div class="divider"></div>
+      </div>
+    </div>
+    <div class="tl">
+      <div class="tl-item fade-in">
+        <h3>Volunteer — National Service Scheme (NSS)</h3>
+        <div class="co">NIT Puducherry</div>
+        <p>Participated in community service initiatives aimed at enhancing leadership qualities, team spirit, and social responsibility.</p>
+      </div>
+      <div class="tl-item fade-in">
+        <h3>Coordinator — Cultural & Sports Events</h3>
+        <div class="co">NIT Puducherry</div>
+        <p>Coordinated Tamil Club activities, Arts Club at Le Ciel Cultural Fest (2023), and Carrom events at Sports Day (2024). Organised cultural and literary activities to promote Tamil language and heritage.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-            // Update active button with smooth animation
-            document.querySelectorAll('.theme-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-        }
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head fade-in">
+      <div class="sec-label">Let's Connect</div>
+      <div class="sec-title">Get In Touch</div>
+      <div class="divider"></div>
+    </div>
+    <div class="contact-wrap fade-in">
+      <p>I'm always open to discussing research opportunities, collaboration projects, or innovative ideas in wireless communication and optical systems. Feel free to reach out!</p>
+      <div class="contact-btns">
+        <a href="mailto:praveenvettrivel182002@gmail.com" class="c-btn">
+          <i class="fas fa-envelope"></i> Send Email
+        </a>
+        <a href="https://www.linkedin.com/in/praveen-k-s-26655b224/" target="_blank" rel="noopener" class="c-btn">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://www.researchgate.net/profile/Praveen-K-S-5?ev=hdr_xprf" target="_blank" rel="noopener" class="c-btn">
+          <i class="fab fa-researchgate"></i> Researchgate
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <strong>Praveen K S</strong> · M.Tech. Communication Systems · NIT Tiruchirappalli</p>
+  <p style="margin-top:0.4rem;font-size:0.8rem;">Puducherry, India &nbsp;·&nbsp; Built with ❤️</p>
+</footer>
 
-        // Set active button on load
-        const buttons = document.querySelectorAll('.theme-btn');
-        buttons.forEach(btn => {
-            btn.classList.remove('active');
-        });
-        if (savedTheme === 'light') {
-            buttons[1].classList.add('active');
-        } else {
-            buttons[0].classList.add('active');
-        }
+<script>
+/* ── THEME ── */
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem('theme', t);
+  document.getElementById('darkBtn').classList.toggle('active', t==='dark');
+  document.getElementById('lightBtn').classList.toggle('active', t==='light');
+}
 
-        // Smooth Scroll with easing
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+/* Auto-detect device preference on first visit */
+(function() {
+  const saved = localStorage.getItem('theme');
+  if (saved) {
+    setTheme(saved);
+  } else {
+    // Detect system preference
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(prefersDark ? 'dark' : 'light');
+  }
+})();
 
-        // Add smooth scroll to top on page load
-        window.addEventListener('load', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
+/* Listen for system preference changes */
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+  if (!localStorage.getItem('theme')) setTheme(e.matches ? 'dark' : 'light');
+});
+
+/* ── HAMBURGER ── */
+const ham = document.getElementById('ham');
+const mob = document.getElementById('mobileMenu');
+ham.addEventListener('click', () => {
+  ham.classList.toggle('open');
+  mob.classList.toggle('show');
+});
+function closeMenu() {
+  ham.classList.remove('open');
+  mob.classList.remove('show');
+}
+
+/* ── SCROLL FADE IN ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin:'0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* ── NAV ACTIVE HIGHLIGHT ── */
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#'+cur ? 'var(--text1)' : '';
+  });
+}, { passive: true });
+
+/* ── NAV SCROLL SHADOW ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.boxShadow =
+    window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,0.3)' : '';
+}, { passive: true });
+</script>
 </body>
-
 </html>
